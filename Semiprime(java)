@@ -1,0 +1,58 @@
+/*
+*
+* Semiprimes: Natural number, product of two prime numbers(numbers may be same).
+*
+* */
+
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+
+        Scanner in=new Scanner(System.in);
+        System.out.print("Enter number:");
+        int x=in.nextInt();
+
+        semiprime(x);
+    }
+
+    private static void semiprime(int x) {
+        int check=0;
+        LinkedList<Integer> list=new LinkedList<>();
+        for(int i=2;i<x;i++){
+            check=checkprime(i);
+
+            if(check==1)
+                list.add(i);
+        }
+
+        int low=0;
+        int high=list.size()-1;
+
+        while(low<=high){
+            check=list.get(low) * list.get(high);
+
+            if(check>x){
+                high--;
+            }else if(check<x){
+                low++;
+            }else if(check==x){
+                System.out.println(x +" is semiprime: "+ list.get(low)+ " "+ list.get(high));
+                return;
+            }
+        }
+        System.out.println(x+ " is not semiprime");
+    }
+
+    private static int checkprime(int i) {
+        for(int j=2;j<i;j++){
+            if(i%j==0)
+                return 0;
+        }
+        return 1;
+    }
+}
