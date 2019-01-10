@@ -1,0 +1,29 @@
+/*
+enter n whole numbers and a number, print a pair of numbers whose sum would be the number
+*/
+
+var n = parseInt(prompt("Enter number of elements"));
+
+var arr = [];
+
+for(var i = 0; i<n; i++){
+    arr[i]=parseInt(prompt("Enter element " + (i+1)));
+}
+
+var sum = parseInt(prompt("Enter sum"));
+var visited = [];
+
+check(arr,visited,n,sum);
+
+function check(arr, visited, n ,sum){
+    var x;
+    for(var i=0; i<n ; i++){
+        x=visited.indexOf(arr[i]);
+        if(x!==-1){
+            console.log("Pair exists:"+ arr[i] + " " + (sum-arr[i]));
+            return;
+        }else visited.push(sum-arr[i]);  
+    }
+    console.log("No pair present");    
+}
+
